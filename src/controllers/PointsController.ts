@@ -1,7 +1,50 @@
 import { Request, Response } from "express";
 import knex from "../database/connection";
 
-class PointController {
+class PointsController {
+  async index(req: Request, res: Response) {
+    // filter city, uf, items => (Request Query).
+    // Request Body to create and edit.
+    // Request Params in routes.
+    const { city, uf, items } = req.query;
+    // console.log(city, uf, items);
+
+    const parsedItems = String(items)
+      .split(",")
+      .map((item) => Number(item.trim()));
+
+    const points = await knex("points")
+      .join("points_items", "points.id", "=", "points_items.point_id")
+      .whereIn("points_items.item_id", parsedItems)
+      .where("city", String(city))
+      .where("uf", String(uf))
+      .distinct()
+      .select("points.*");
+
+    return res.json(points);
+  }
+
+  async show(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const point = await knex("points").where("id", id).first();
+
+    if (!point) {
+      return res.status(400).json({ error: "Point not found" });
+    }
+
+    const items = await knex("items")
+      // join points_items on items.id - points
+      .join("points_items", "items.id", "=", "points_items.item_id")
+      .where("points_items.point_id", id)
+      .select("items.title");
+
+    return res.json({
+      point,
+      items,
+    });
+  }
+
   async create(req: Request, res: Response) {
     const {
       name,
@@ -56,25 +99,6 @@ class PointController {
       ...point,
     });
   }
-
-  async show(req: Request, res: Response) {
-    const { id } = req.params;
-
-    const point = await knex("points").where("id", id).first();
-
-    if (!point) {
-      return res.status(400).json({ error: "Point not found" });
-    }
-
-    // const collectedItems = await knex("items")
-    //   .join("points_items", "items.id", "=", "points_items.item_id")
-    //   .where("points_items.point_id", id);
-
-    return res.json({
-      point,
-      // collectedItems,
-    });
-  }
 }
 
-export default PointController;
+export default PointsController;
