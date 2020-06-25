@@ -13,6 +13,15 @@ The backend was developed with [**_Node.js_**](https://nodejs.org/en/) and [**_E
 The REST API was tested using [**_Insomnia_**](https://insomnia.rest/) and I also used [**Knex.js**](http://knexjs.org/) a SQL Query Builder for JavaScript, which helped by coding JavaScript in the SQLite to create the tables for each session in the backend.
 I also used [**TypeScript**](https://www.typescriptlang.org/) in this application providing highly productive development tools for JavaScript IDEs and practices.
 
+**Insomnia**
+![insomnia](.github/insomnia.png)
+
+**create**
+![create](.github/create.png)
+
+**Points Controller**
+![pointscontroller](.github/pointscontroller.png)
+
 ## Getting started
 
 1.  Prerequisites
