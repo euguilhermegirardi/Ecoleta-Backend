@@ -58,6 +58,8 @@ class PointsController {
     } = req.body;
 
     const point = {
+      image:
+        "https://images.unsplash.com/photo-1501523460185-2aa5d2a0f981?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60",
       name,
       email,
       whatsapp,
@@ -65,21 +67,11 @@ class PointsController {
       longitude,
       city,
       uf,
-      items,
     };
 
     const trx = await knex.transaction();
 
-    const insertedIds = await trx("points").insert({
-      image: "default",
-      name,
-      email,
-      whatsapp,
-      latitude,
-      longitude,
-      city,
-      uf,
-    });
+    const insertedIds = await trx("points").insert(point);
 
     const point_id = insertedIds[0];
 
