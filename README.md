@@ -20,7 +20,7 @@ I also used [**TypeScript**](https://www.typescriptlang.org/) in this applicatio
 ![create](.github/create.png)
 
 **Points Controller**
-![pointscontroller](.github/pointscontroller.png)
+![pointscontroller](.github/points-controller.png)
 
 ## Getting started
 
