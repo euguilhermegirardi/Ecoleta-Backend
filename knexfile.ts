@@ -13,3 +13,5 @@ module.exports = {
   },
   useNullAsDefault: true,
 };
+
+// 'npx knex migrate:latest --knexfile knexfile.ts' to migrate the database.

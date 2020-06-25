@@ -1,3 +1,5 @@
+// Points of collect.
+
 import Knex from "knex";
 
 export async function up(knex: Knex) {
@@ -17,5 +19,5 @@ export async function up(knex: Knex) {
 
 export async function down(knex: Knex) {
   // Go back (delete the table)
-  return knex.schema.dropTable("point");
+  return knex.schema.dropTable("points");
 }

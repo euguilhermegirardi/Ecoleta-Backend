@@ -2,7 +2,7 @@ import knex from "knex";
 import path from "path";
 
 const connection = knex({
-  client: "sqlite3",
+  client: "sqlite3", // npm install
   connection: {
     filename: path.resolve(__dirname, "database.sqlite"),
   },
@@ -10,3 +10,5 @@ const connection = knex({
 });
 
 export default connection;
+
+// Migrations = Database history.
